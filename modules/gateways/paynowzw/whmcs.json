@@ -1,0 +1,21 @@
+{
+    "schema": "1.0",
+    "type": "gateway",
+    "name": "paynowzw",
+    "license": "MIT",
+    "description": {
+        "name": "Paynow Zimbabwe",
+        "tagline": "Accept payments in Zimbabwe via Paynow web checkout",
+        "features": [
+            "Web checkout redirect",
+            "Server-to-server payment verification",
+            "WHMCS 8 and 9 compatible"
+        ]
+    },
+    "authors": [
+        {
+            "name": "mbekezm",
+            "homepage": "https://github.com/mbekezm/paynow-whmcs"
+        }
+    ]
+}
