@@ -1,9 +1,9 @@
 {
     "schema": "1.0",
-    "type": "gateway",
+    "type": "whmcs-gateways",
     "name": "paynowzw",
     "license": "MIT",
-    "category": "gateway",
+    "category": "payments",
     "description": {
         "name": "Paynow Zimbabwe",
         "tagline": "Accept payments in Zimbabwe via Paynow web checkout",
