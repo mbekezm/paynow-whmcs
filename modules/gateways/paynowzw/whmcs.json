@@ -3,19 +3,31 @@
     "type": "gateway",
     "name": "paynowzw",
     "license": "MIT",
+    "category": "gateway",
     "description": {
         "name": "Paynow Zimbabwe",
         "tagline": "Accept payments in Zimbabwe via Paynow web checkout",
         "features": [
-            "Web checkout redirect",
+            "Web checkout via the Paynow hosted payment page",
+            "Pay with Zimswitch enabled cards, Visa and Mastercard",
+            "Mobile money: EcoCash, OneMoney, Omari and InnBucks",
+            "Supports any payment method enabled on your Paynow merchant account",
             "Server-to-server payment verification",
             "WHMCS 8 and 9 compatible"
         ]
     },
+    "logo": {
+        "filename": "logo.png"
+    },
+    "support": {
+        "homepage": "https://mbekezeli.com",
+        "support_url": "https://github.com/mbekezm/paynow-whmcs/issues",
+        "docs_url": "https://github.com/mbekezm/paynow-whmcs#readme"
+    },
     "authors": [
         {
-            "name": "mbekezm",
-            "homepage": "https://github.com/mbekezm/paynow-whmcs"
+            "name": "Mbekezeli Mhlanga",
+            "homepage": "https://mbekezeli.com"
         }
     ]
 }
