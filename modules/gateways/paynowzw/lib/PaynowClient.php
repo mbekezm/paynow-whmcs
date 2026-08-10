@@ -62,6 +62,17 @@ final class PaynowClient
 
         $response = $this->httpPost(self::INITIATE_URL, $fields);
 
+        // A successful response must be hash-authenticated before its
+        // browserurl is used for a customer redirect. Error responses may
+        // legitimately arrive without a hash; their error message must
+        // survive so failures stay diagnosable. Any hash that is present
+        // must verify. Keys are already lowercased by httpPost.
+        $responseStatus = strtolower((string) ($response['status'] ?? ''));
+
+        if ($responseStatus === 'ok' && !isset($response['hash'])) {
+            throw new \RuntimeException('Response hash missing from successful response');
+        }
+
         if (isset($response['hash']) && !$this->verifyHash($response)) {
             throw new \RuntimeException('Response hash verification failed');
         }
