@@ -8,8 +8,8 @@
         "name": "Paynow Zimbabwe",
         "tagline": "Accept payments in Zimbabwe via Paynow web checkout",
         "features": [
-            "Web checkout via the Paynow hosted payment page",
-            "Pay with Zimswitch enabled cards, Visa and Mastercard",
+            "Web checkout via the Paynow-hosted payment page",
+            "Pay with Zimswitch-enabled cards, Visa and Mastercard",
             "Mobile money: EcoCash, OneMoney, Omari and InnBucks",
             "Supports any payment method enabled on your Paynow merchant account",
             "Server-to-server payment verification",

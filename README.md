@@ -11,9 +11,9 @@ ground-up rebuild with no external dependencies.
 
 ## Payment methods
 
-Customers complete payment on the Paynow hosted checkout page, which
+Customers complete payment on the Paynow-hosted checkout page, which
 presents every payment method enabled on your Paynow merchant account.
-Supported methods include Zimswitch enabled cards, Visa and Mastercard,
+Supported methods include Zimswitch-enabled cards, Visa and Mastercard,
 and mobile money wallets such as EcoCash, OneMoney, Omari and InnBucks.
 No additional configuration is needed in WHMCS to enable or disable
 individual methods; manage them in your Paynow merchant dashboard.
@@ -37,15 +37,16 @@ there while testing, and empty the field for production use.
 
 The module sends the invoice amount as-is. The WHMCS currency configured
 for the client must match the currency of the Paynow integration (for
-example USD). When a payment confirms, the module applies the invoice's
-full outstanding balance.
+example USD). When a payment confirms, the module records the settled
+amount reported and hash-verified by Paynow.
 
 ## How it works
 
 On checkout the customer is redirected to Paynow. Paynow notifies the
 callback URL once the transaction resolves. The module verifies the
-notification hash, re-polls Paynow directly for the authoritative status,
-and marks the invoice paid when the transaction is settled.
+notification hash, polls Paynow for the authoritative status when a poll
+URL is provided, uses the verified callback status otherwise, and marks
+the invoice paid when the transaction is settled.
 
 ## License
 
