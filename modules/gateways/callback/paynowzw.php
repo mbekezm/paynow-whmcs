@@ -46,10 +46,22 @@ try {
     );
 
     if ($status->isSettled()) {
-        // Empty-string amount applies the invoice's full outstanding
-        // balance. This is a deliberate project decision to avoid
-        // currency conversion mismatches; do not change it.
-        addInvoicePayment($invoiceId, $status->paynowReference(), '', 0, $gatewayModuleName);
+        // Record the amount reported by Paynow. It arrives inside a
+        // hash-verified message, so it is the authoritative settled
+        // amount for this transaction.
+        $paidAmount = $status->amount();
+
+        if (!is_numeric($paidAmount) || (float) $paidAmount <= 0) {
+            throw new \RuntimeException('Settled transaction reported an invalid amount: ' . $paidAmount);
+        }
+
+        addInvoicePayment(
+            $invoiceId,
+            $status->paynowReference(),
+            number_format((float) $paidAmount, 2, '.', ''),
+            0,
+            $gatewayModuleName
+        );
     }
 } catch (\Throwable $e) {
     logTransaction($gatewayParams['name'], ['error' => $e->getMessage(), 'post' => $_POST], 'Error');
