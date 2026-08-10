@@ -105,6 +105,8 @@ final class PaynowClient
 
     public function verifyCallback(array $postFields): StatusResponse
     {
+        $postFields = $this->normalizeKeys($postFields);
+
         if (!isset($postFields['hash']) || !$this->verifyHash($postFields)) {
             throw new \RuntimeException('Callback hash verification failed');
         }
@@ -135,6 +137,26 @@ final class PaynowClient
         $received = (string) ($fields['hash'] ?? '');
 
         return hash_equals($expected, $received);
+    }
+
+    /**
+     * Lowercases all field names while preserving field order. Paynow's
+     * documentation renders field names in mixed case (Status, BrowserUrl,
+     * Hash) while this client reads lowercase keys, so every inbound
+     * message is normalized before verification and construction. Values
+     * are untouched, and computeHash concatenates only values, so
+     * normalization never changes a hash result. If two keys differ only
+     * by case, the later one wins.
+     */
+    private function normalizeKeys(array $fields): array
+    {
+        $normalized = [];
+
+        foreach ($fields as $key => $value) {
+            $normalized[strtolower((string) $key)] = $value;
+        }
+
+        return $normalized;
     }
 
     private function httpPost(string $url, array $fields): array
@@ -171,6 +193,6 @@ final class PaynowClient
             throw new \RuntimeException('Paynow response could not be parsed');
         }
 
-        return $parsed;
+        return $this->normalizeKeys($parsed);
     }
 }
