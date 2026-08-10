@@ -9,6 +9,15 @@ ground-up rebuild with no external dependencies.
 - WHMCS 8.x or 9.x
 - An active Paynow Zimbabwe merchant account with an integration ID and key
 
+## Payment methods
+
+Customers complete payment on the Paynow hosted checkout page, which
+presents every payment method enabled on your Paynow merchant account.
+Supported methods include Zimswitch enabled cards, Visa and Mastercard,
+and mobile money wallets such as EcoCash, OneMoney, Omari and InnBucks.
+No additional configuration is needed in WHMCS to enable or disable
+individual methods; manage them in your Paynow merchant dashboard.
+
 ## Installation
 
 Download or clone the repository, then copy the contents of the modules
